@@ -46,3 +46,24 @@ export const saveNews = async (news, keyword) => {
 	}
 	return await response.json();
 };
+
+export const saveScrap = async (scrap, newsId) => {
+	const response = await fetch(`/scrap/create`, {
+		method: 'POST',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			...scrap,
+			newsId,
+			memberId: 1,
+		})
+	})
+	console.log(response);
+	if (response.status === 401) {
+		// sessionStorage.clear();
+		// window.location.href = "/login";
+	}
+	// return await response.json();
+}
